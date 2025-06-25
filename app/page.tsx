@@ -748,8 +748,7 @@ export default function HomePage() {
                   <div>
                     <h4 className="font-semibold text-[#1d3154] mb-1">Alamat Kantor</h4>
                     <p className="text-gray-700 leading-relaxed">
-                      Jalan Doktor Ide Anak Agung Gde Agung Lot.8.6-8.7 RT.001/RW.002, Kuningan Timur, Setiabudi,
-                      Jakarta Selatan, DKI Jakarta
+                      GEDUNG MENARA ANUGRAH lT.17 UNIT BB Jl. MEGA KUNINGAN BARAT lOT 8.6 - 8.7 KUNINGAN TIMNUR, SETIA BUDI
                     </p>
                   </div>
                 </div>
@@ -771,7 +770,7 @@ export default function HomePage() {
                   <Mail className="w-6 h-6 text-[#f3d05a]" />
                   <div>
                     <h4 className="font-semibold text-[#1d3154] mb-1">Email</h4>
-                    <p className="text-gray-700">ptwahanaamanahwisata123@gmail.com</p>
+                    <p className="text-gray-700">ptwahanaamanahwisata@gmail.com</p>
                   </div>
                 </div>
               </CardContent>
