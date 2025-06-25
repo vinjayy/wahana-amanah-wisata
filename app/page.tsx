@@ -676,6 +676,154 @@ export default function HomePage() {
         </div>
       </section>
 
+            {/* Certificates Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[#f3d05a]/5 to-transparent rounded-full blur-3xl"></div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-block p-3 rounded-full bg-[#1d3154]/10 mb-4">
+              <Shield className="w-8 h-8 text-[#1d3154]" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1d3154] mb-6">Sertifikat & Legalitas</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#1d3154] to-[#f3d05a] mx-auto mb-6"></div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Terdaftar resmi dan memiliki izin lengkap dari instansi terkait
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                title: "Izin Penyelenggaraan Umroh",
+                description: "",
+                image: "/sertifikat-1.jpg?height=360&width=640",
+              },
+              {
+                title: "Sertifikat Basic Reservation",
+                description: "",
+                image: "/sertifikat2.jpg?height=360&width=640",
+              },
+              {
+                title: "Sertifikat Daftar Tiketing",
+                //description: "Terdaftar di Kementerian Pariwisata",
+                image: "/sertifikat3.jpg?height=360&width=640",
+              },
+              {
+                title: "Sertifikat Basic Reservation",
+                //description: "Standar Manajemen Mutu Internasional",
+                image: "/sertifikat4.jpg?height=360&width=640",
+              },
+            ].map((cert, index) => (
+              <div
+                key={index}
+                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden border border-gray-100"
+              >
+                <div className="relative aspect-video overflow-hidden">
+                  <Image
+                    src={cert.image || "/placeholder.svg"}
+                    alt={cert.title}
+                    width={640}
+                    height={360}
+                    //className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 bg-white"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-[#f3d05a]" />
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-[#1d3154] mb-2 group-hover:text-[#1d3154] transition-colors">
+                    {cert.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{cert.description}</p>
+                  <div className="mt-4 flex items-center text-sm text-[#f3d05a] font-medium">
+                    <Shield className="w-4 h-4 mr-2" />
+                    Terverifikasi
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#1d3154]/10 to-[#f3d05a]/10 rounded-full">
+              <CheckCircle className="w-5 h-5 text-[#1d3154] mr-2" />
+              <span className="text-[#1d3154] font-medium">Semua sertifikat telah diverifikasi dan masih berlaku</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brochures Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#1d3154]/5 to-transparent rounded-full blur-3xl"></div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-block p-3 rounded-full bg-[#1d3154]/10 mb-4">
+              <FileText className="w-8 h-8 text-[#1d3154]" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1d3154] mb-6">Brosur</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#1d3154] to-[#f3d05a] mx-auto mb-6"></div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Informasi lengkap paket umroh dan layanan kami</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {[
+              {
+                image: "/brosur1.jpg?height=340&width=360",
+                downloadLink: "/downloads/paket-umroh-2025.pdf",
+              },
+              {
+                image: "/brosur2.jpg?height=340&width=360",
+                downloadLink: "/downloads/paket-haji-plus-2025.pdf",
+              },
+            ].map((brochure, index) => (
+              <div
+                key={index}
+                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden border border-gray-100"
+              >
+                <div className="relative aspect-[9/16] overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                  <Image
+                    src={brochure.image || "/placeholder.svg"}
+                    //alt={brochure.title}
+                    alt={`Brosur ${index + 1}`}
+                    width={360}
+                    height={640}
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 bg-white"
+                    //className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+
+
+                    </div>
+
+                      </div>
+                    ))}
+                  </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-12">
+                    <Button
+              size="lg"
+              className="bg-gradient-to-r from-[#1d3154] to-[#2a4a7a] hover:from-[#2a4a7a] hover:to-[#1d3154] text-white font-semibold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                      asChild
+                    >
+                      <Link href="https://wa.me/6285810259076" target="_blank">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Hubungi Kami untuk Info Lebih Lanjut
+                      </Link>
+                    </Button>
+
+          </div>
+        </div>
+      </section>
+
       {/* Commitment Section */}
       <section className="py-20 bg-gradient-to-br from-[#1d3154] via-[#2a4a7a] to-[#1d3154] text-white relative overflow-hidden">
         <div className="absolute inset-0">
