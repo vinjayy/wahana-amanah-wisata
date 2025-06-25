@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
@@ -21,8 +23,26 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useState, useEffect } from "react"
 
 export default function HomePage() {
+    const [currentSlide, setCurrentSlide] = useState(0)
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % 8)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + 8) % 8)
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide()
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -500,20 +520,68 @@ export default function HomePage() {
           </div>
 
           <div className="max-w-7xl mx-auto">
-            {/* Main Large Image */}
-            <div className="mb-8">
-              <div className="relative group overflow-hidden rounded-2xl shadow-2xl h-96 md:h-[500px]">
+
+                 {/* Image Carousel */}
+            <div className="relative">
+              <div className="overflow-hidden rounded-2xl shadow-2xl">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {[
+                    {
+                      title: "Kaaba dan Masjid al-Haram",
+                      desc: "Makkah al-Mukarramah",
+                      image: "/1.jpeg?height=600&width=1200",
+                    },
+                    {
+                      title: "Masjid Nabawi",
+                      desc: "Madinah al-Munawwarah",
+                      image: "/2.jpeg?height=600&width=1200",
+                    },
+                    {
+                      title: "Hotel Makkah Premium",
+                      desc: "Akomodasi Terbaik di Makkah",
+                      image: "/3.jpeg?height=600&width=1200",
+                    },
+                    {
+                      title: "Jamaah Umroh Bersama",
+                      desc: "Perjalanan Penuh Berkah",
+                      image: "/4.jpeg?height=600&width=1200",
+                    },
+                    {
+                      title: "Bimbingan Manasik Haji",
+                      desc: "Persiapan Ibadah Lengkap",
+                      image: "/5.jpeg?height=600&width=1200",
+                    },
+                    {
+                      title: "Ziarah Jabal Rahmah",
+                      desc: "Padang Arafah",
+                      image: "/6.jpeg?height=600&width=1200",
+                    },
+                    {
+                      title: "Masjid Quba",
+                      desc: "Masjid Pertama dalam Islam",
+                      image: "/7.jpeg?height=600&width=1200",
+                    },
+                    {
+                      title: "Raudhah Sharif",
+                      desc: "Taman Surga di Bumi",
+                      image: "/8.jpeg?height=600&width=1200",
+                    },
+                  ].map((item, index) => (
+                    <div key={index} className="w-full flex-shrink-0 relative h-96 md:h-[500px]">
+                
                 <Image
-                  src="/umroh4.jpg?height=500&width=1200"
-                  alt="Kaaba dan Masjid al-Haram"
+                        src={item.image || "/placeholder.svg"}
+                        alt={item.title}
                   width={1200}
                   height={500}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                  className="w-full h-full object-cover"                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2">Kaaba dan Masjid al-Haram</h3>
-                  <p className="text-gray-200 text-lg">Makkah al-Mukarramah</p>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-2">{item.title}</h3>
+                        <p className="text-gray-200 text-lg">{item.desc}</p>
                 </div>
                 <div className="absolute top-4 right-4">
                   <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
@@ -521,39 +589,43 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
+                  ))}
+              </div>
             </div>
 
-            {/* Small Images Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                                {
-                  title: "Masjid Nabawi",
-                  desc: "Madinah al-Munawwarah",
-                  image: "/umroh5.jpeg?height=250&width=350",
-                },
-                { title: "Hotel Makkah", desc: "Akomodasi Terbaik", image: "/hotel1.jpg?height=220&width=320" },
-                { title: "Jamaah Umroh", desc: "Perjalanan Bersama", image: "/umroh3.png?height=240&width=340" },
-                {
-                  title: "Bimbingan Manasik",
-                  desc: "Persiapan Ibadah",
-                  image: "/umroh6.jpeg?height=230&width=330",
-                },
-              ].map((item, index) => (
-                <div key={index} className="relative group overflow-hidden rounded-xl shadow-lg h-32 md:h-40">
-                  <Image
-                    src={item.image || "/umroh5.jpeg"}
-                    alt={item.title}
-                    width={300}
-                    height={200}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 z-10"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 z-10"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {Array.from({ length: 8 }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      currentSlide === index ? "bg-[#f3d05a]" : "bg-white/50"
+                    }`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-2 left-2 text-white">
-                    <h4 className="font-bold text-xs md:text-sm">{item.title}</h4>
-                    <p className="text-gray-200 text-xs hidden md:block">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
             </div>
           </div>
         </div>
